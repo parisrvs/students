@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.test import Client
 
-from core.models import Student
+from core.models import Student, Result
 
 from datetime import date
 
@@ -31,6 +31,7 @@ class AdminSiteTests(TestCase):
             username="testuser"
         )
 
+        """Create Student"""
         payload = {
             "name": "student",
             "student_class": "01",
@@ -40,6 +41,15 @@ class AdminSiteTests(TestCase):
             "mobile": "9876543210"
         }
         self.student = Student.objects.create(**payload)
+
+        """Create Result"""
+        self.result = Result.objects.create(
+            student=self.student,
+            subject="PHY",
+            max_marks=100,
+            marks_obtained=98,
+            remark="test remark"
+        )
 
     def test_users_list(self):
         """test that users are listed on page."""
@@ -85,4 +95,26 @@ class AdminSiteTests(TestCase):
         url = reverse("admin:core_student_add")
         res = self.client.get(url)
 
+        self.assertEqual(res.status_code, 200)
+
+    def test_results_list(self):
+        """Test that results are listed on the page."""
+
+        url = reverse("admin:core_result_changelist")
+        res = self.client.get(url)
+        self.assertContains(res, self.result.student)
+        self.assertContains(res, self.result.marks_obtained)
+
+    def test_edit_result_page(self):
+        """Test that edit requlta page works correctly."""
+        url = reverse("admin:core_result_change", args=[self.result.id])
+        res = self.client.get(url)
+
+        self.assertEqual(res.status_code, 200)
+
+    def test_result_create_page(self):
+        """Test that create results page works correctly."""
+
+        url = reverse("admin:core_result_add")
+        res = self.client.get(url)
         self.assertEqual(res.status_code, 200)

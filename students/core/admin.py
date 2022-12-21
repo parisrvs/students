@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import User, Student
+from django.db.models import Count
+from django.utils.html import format_html, urlencode
+from django.urls import reverse
+from .models import User, Student, Result
 
 
 class UserAdmin(BaseUserAdmin):
@@ -48,9 +51,40 @@ class UserAdmin(BaseUserAdmin):
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = [
-        "name", "student_class", "roll_number", "dob", "gender", "mobile"
+        "name",
+        "student_class",
+        "roll_number",
+        "dob",
+        "gender",
+        "mobile",
+        "results_count"
+    ]
+    search_fields = ["name__istartswith"]
+
+    @admin.display(ordering="results_count")
+    def results_count(self, student):
+        url = reverse("admin:core_result_changelist") + '?' + urlencode({
+            "student__id": str(student.id)
+        })
+
+        return format_html(
+            "<a href='{}'>{}</a>",
+            url,
+            student.results_count
+        )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).annotate(
+            results_count=Count("results")
+        )
+
+
+class ResultAdmin(admin.ModelAdmin):
+    list_display = [
+        "student", "subject", "max_marks", "marks_obtained"
     ]
 
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Student, StudentAdmin)
+admin.site.register(Result, ResultAdmin)

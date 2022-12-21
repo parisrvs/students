@@ -41,3 +41,29 @@ class Student(models.Model):
     dob = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     mobile = models.CharField(max_length=50, validators=[validate_number])
+
+    def __str__(self):
+        return self.name
+
+
+class Result(models.Model):
+    SUBJECT_CHOICES = [
+        ("PHY", "Physics"),
+        ("CHE", "Chemistry"),
+        ("BIO", "Biology"),
+        ("EG1", "English Lit."),
+        ("EG2", "English Lang."),
+        ("MAT", "Mathematics"),
+        ("HIS", "History"),
+        ("GEO", "Geography"),
+        ("CMP", "Computer Science"),
+    ]
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name="results"
+    )
+    subject = models.CharField(max_length=3, choices=SUBJECT_CHOICES)
+    max_marks = models.IntegerField()
+    marks_obtained = models.IntegerField()
+    remark = models.TextField(max_length=1024)
