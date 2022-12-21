@@ -1,3 +1,9 @@
-from django.shortcuts import render  # noqa
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+from .serializers import StudentSerializer
+from .models import Student
 
-# Create your views here.
+
+class StudentViewSet(ModelViewSet):
+    serializer_class = StudentSerializer
+    queryset = Student.objects.all().prefetch_related("results")
