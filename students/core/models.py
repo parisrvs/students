@@ -45,6 +45,9 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["name"]
+
 
 class Result(models.Model):
     SUBJECT_CHOICES = [
@@ -67,3 +70,9 @@ class Result(models.Model):
     max_marks = models.IntegerField()
     marks_obtained = models.IntegerField()
     remark = models.TextField(max_length=1024)
+
+    def __str__(self):
+        return self.student.name
+
+    class Meta:
+        unique_together = [["student", "subject"]]
