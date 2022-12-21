@@ -25,7 +25,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
       - MYSQL_DATABASE=mysql
-      - MYSQL_USER=mysql
       - MYSQL_PASSWORD=mysql
 
 volumes:
