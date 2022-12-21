@@ -87,7 +87,9 @@ class StudentAdmin(admin.ModelAdmin):
         return student.average_marks
 
     def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related("results").annotate(
+        return super().get_queryset(request).prefetch_related(
+            "results"
+        ).annotate(
             results_count=Count("results"),
             average_marks=Avg("results__marks_obtained")
         )
