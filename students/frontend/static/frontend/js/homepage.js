@@ -73,6 +73,9 @@ function add_student() {
                 e.innerHTML = '';
             });
             for (msg in res) {
+                if (msg === "non_field_errors") {
+                    document.querySelector("#add_student_error").innerHTML = res[msg];
+                }
                 let id = `feedback_${msg}`
                 if (document.getElementById(id))
                     document.getElementById(id).innerHTML = res[msg][0];
@@ -154,6 +157,4 @@ function add_result(student_id) {
     data.append('remark', remarks);
     request.send(data);
     return false;
-
-
 }

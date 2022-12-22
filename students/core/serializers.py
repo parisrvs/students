@@ -134,7 +134,7 @@ class StudentSerializer(serializers.ModelSerializer):
         try:
             average = sum // count
         except ZeroDivisionError:
-            return None
+            return 0
         else:
             return average
 
