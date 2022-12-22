@@ -94,7 +94,7 @@ class UpdateResultSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    date_of_birth = serializers.DateField(source="dob")
+    # date_of_birth = serializers.DateField(source="dob")
     results = ResultSerializer(read_only=True, many=True)
 
     class Meta:
@@ -104,7 +104,7 @@ class StudentSerializer(serializers.ModelSerializer):
             "name",
             "student_class",
             "roll_number",
-            "date_of_birth",
+            "dob",
             "gender",
             "mobile",
             "subjects_count",
