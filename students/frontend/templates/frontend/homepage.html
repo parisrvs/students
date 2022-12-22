@@ -1,5 +1,5 @@
 {% extends 'frontend/layout.html' %}
-
+{% load static %}
 
 {% block style %}{% endblock %}
 {% block title %}Homepage{% endblock %}
@@ -7,7 +7,9 @@
 
 {% block body %}
 <div class="container text-center">
-    <h3 class="mt-5">Students List</h3><hr>
+    <h3 class="mt-2">Students List</h3>
+    <a href="" onclick="display_add_student_modal(); return false;">Add Student</a>
+    <hr>
     <div class="m-3 p-1" id="students"></div>
 </div>
 {% endblock %}

@@ -124,3 +124,71 @@
 
 
 
+<script id="addStudentModalHandlebars" type="text/x-handlebars-template">
+    {% verbatim %}
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addStudentModalLabel">Add Student</h1>
+                <button type="button" class="btn-close toDisable" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <form id="addStudentForm" onsubmit="add_student(); return false;">
+                    <div class="row g-3">
+                        <div class="col-md-6 col-12">
+                            <label for="student_name" class="form-label"><span class="requirements">*</span>Name</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" id="student_name">
+                            <div id="feedback_name" class="errormessage"></div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label for="student_class" class="form-label"><span class="requirements">*</span>Class</label>
+                            <select class="form-select" aria-label="Class" id="student_class">
+                                <option disabled selected value="">Class</option>
+                                {{#each class_choices}}
+                                <option value="{{this.key}}">{{this.value}}</option>
+                                {{/each}}
+                            </select>
+                            <div id="feedback_student_class" class="errormessage"></div>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label for="student_gender" class="form-label"><span class="requirements">*</span>Gender</label>
+                            <select class="form-select" aria-label="Gender" id="student_gender">
+                                <option disabled selected value="">Gender</option>
+                                {{#each gender_choices}}
+                                <option value="{{this.key}}">{{this.value}}</option>
+                                {{/each}}
+                            </select>
+                            <div id="feedback_gender" class="errormessage"></div>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label for="student_roll_number" class="form-label"><span class="requirements">*</span>Roll Number</label>
+                            <input type="text" class="form-control" placeholder="Roll Number" aria-label="Roll Number" id="student_roll_number">
+                            <div id="feedback_roll_number" class="errormessage"></div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label for="student_dob" class="form-label"><span class="requirements">*</span>Date of Birth</label>
+                            <input type="date" class="form-control" placeholder="Date of Birth" aria-label="Date of Birth" id="student_dob">
+                            <div id="feedback_dob" class="errormessage"></div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label for="student_mobile" class="form-label"><span class="requirements">*</span>Mobile</label>
+                            <input type="text" class="form-control" placeholder="Mobile" aria-label="Mobile" id="student_mobile">
+                            <div id="feedback_mobile" class="errormessage"></div>
+                        </div>
+                    </div>
+                </form>
+                <div class="errormessage mt-2" id="add_student_error"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="addStudentForm" class="btn btn-primary btn-sm toDisable w-25">
+                    <div class="spinner-border spinner-border-sm toHide" hidden role="status"></div>
+                    Add
+                </button>
+                <button type="button" class="btn btn-primary btn-sm toDisable w-25" data-bs-dismiss="modal" id="addStudentModalCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+    {% endverbatim %}
+</script>
