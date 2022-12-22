@@ -1,0 +1,126 @@
+<script id="studentsHandlebars" type="text/x-handlebars-template">
+    {% verbatim %}
+    <div class="accordion accordion-flush" id="accordionStudents">
+        {{#each students}}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{this.id}}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{this.id}}" aria-expanded="false" aria-controls="collapse{{this.id}}">
+                    <span class="me-auto">{{this.name}}</span>
+                </button>
+            </h2>
+            <div id="collapse{{this.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{this.id}}" data-bs-parent="#accordionStudents">
+                <div class="accordion-body">
+                    <span class="mx-auto">{{this.student_class}}</span>
+                    <div class="row">
+                        <div class="col-6">
+                            Roll #
+                        </div>
+                        <div class="col-6">
+                            {{this.roll_number}}
+                        </div>
+                        <div class="col-6">
+                            Date Of Birth
+                        </div>
+                        <div class="col-6">
+                            {{this.dob}}
+                        </div>
+                        <div class="col-6">
+                            Gender
+                        </div>
+                        <div class="col-6">
+                            {{this.gender}}
+                        </div>
+                        <div class="col-6">
+                            Mobile #
+                        </div>
+                        <div class="col-6">
+                            {{this.mobile}}
+                        </div>
+                        <div class="col-6">
+                            Subjects
+                        </div>
+                        <div class="col-6">
+                            {{this.subjects_count}}
+                        </div>
+                        <div class="col-6">
+                            Average Marks
+                        </div>
+                        <div class="col-6">
+                            {{this.average}}
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#resultsModal{{this.id}}">
+                        Score Card
+                    </button>
+                    <div class="modal fade" id="resultsModal{{this.id}}" tabindex="-1" aria-labelledby="resultsModal{{this.id}}Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="resultsModal{{this.id}}Label">{{this.name}}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Subject</th>
+                                                <th scope="col">Max Marks</th>
+                                                <th scope="col">Obtained</th>
+                                                <th scope="col">Remarks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each this.results}}
+                                            <tr>
+                                                <td>{{this.subject}}</td>
+                                                <td>{{this.max_marks}}</td>
+                                                <td>{{this.marks_obtained}}</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#remarkOffcanvas{{this.id}}" aria-controls="remarkOffcanvas{{this.id}}">
+                                                        Remarks
+                                                    </button>
+
+                                                    <div class="offcanvas offcanvas-start" tabindex="-1" id="remarkOffcanvas{{this.id}}" aria-labelledby="remarkOffcanvas{{this.id}}Label">
+                                                        <div class="offcanvas-header">
+                                                            <h5 class="offcanvas-title" id="remarkOffcanvas{{this.id}}Label">{{this.subject}}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="offcanvas-body">
+                                                            {{this.remark}}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="row my-5">
+        <div class="col-6 text-start">
+            {{#if previous}}
+            <button class="btn btn-primary btn-sm w-50" onclick="change_page('{{previous}}')">Previous</button>
+            {{/if}}
+        </div>
+        <div class="col-6 text-end">
+            {{#if next}}
+            <button class="btn btn-primary btn-sm w-50" onclick="change_page('{{next}}')">Next</button>
+            {{/if}}
+        </div>
+    </div>
+    {% endverbatim %}
+</script>
+
+
+
+

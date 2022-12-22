@@ -1,0 +1,50 @@
+
+
+<!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvar{{this.id}}" aria-labelledby="offcanvar{{this.id}}Label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvar{{this.id}}Label">{{this.name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Max Marks</th>
+                    <th scope="col">Obtained</th>
+                    <th scope="col">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.results}}
+                <tr>
+                    <td class="me-auto">{{this.subject}}</td>
+                    <td class="mx-auto">{{this.max_marks}}</td>
+                    <td class="ms-auto">{{this.marks_obtained}}</td>
+                    <td class="ms-auto">
+                        <button onclick="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#reviewModal{{this.id}}">
+                            View
+                        </button>
+                        <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" id="reviewModal{{this.id}}" tabindex="-1" aria-labelledby="reviewModal{{this.id}}Label" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="reviewModal{{this.id}}Label">Review</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{this.remark}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div> -->
