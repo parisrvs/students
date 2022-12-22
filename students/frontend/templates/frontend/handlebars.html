@@ -96,7 +96,8 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary btn-sm toDisable w-25" onclick="display_add_result_modal('{{this.id}}'); return false;">Add</button>
+                                    <button type="button" class="btn btn-primary btn-sm toDisable w-25" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -187,6 +188,60 @@
                     Add
                 </button>
                 <button type="button" class="btn btn-primary btn-sm toDisable w-25" data-bs-dismiss="modal" id="addStudentModalCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+    {% endverbatim %}
+</script>
+
+
+<script id="addResultModalHandlebars" type="text/x-handlebars-template">
+    {% verbatim %}
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addResultModalLabel">Add Result</h1>
+                <button type="button" class="btn-close toDisable" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <form id="addResultForm" onsubmit="add_result('{{student_id}}'); return false;">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="subject_name" class="form-label"><span class="requirements">*</span>Subject</label>
+                            <select class="form-select" id="subject_name">
+                                <option disabled selected value="">Subject</option>
+                                {{#each subject_choices}}
+                                <option value="{{this.key}}">{{this.value}}</option>
+                                {{/each}}
+                            </select>
+                            <div id="feedback_subject" class="errormessage"></div>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label for="maximum_marks" class="form-label"><span class="requirements">*</span>Maximum Marks</label>
+                            <input type="text" class="form-control" placeholder="Maximum Marks" aria-label="Maximum Marks" id="maximum_marks">
+                            <div id="feedback_max_marks" class="errormessage"></div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <label for="marks_obtained" class="form-label"><span class="requirements">*</span>Marks Obtained</label>
+                            <input type="text" class="form-control" placeholder="Marks Obtained" aria-label="Marks Obtained" id="marks_obtained">
+                            <div id="feedback_marks_obtained" class="errormessage"></div>
+                        </div>
+                        <div class="col-12">
+                            <label for="remarks" class="form-label"><span class="requirements">*</span>Remarks</label>
+                            <textarea class="form-control" id="remarks" rows="3"></textarea>
+                            <div id="feedback_remark" class="errormessage"></div>
+                        </div>
+                    </div>
+                </form>
+                <div class="errormessage mt-2" id="add_result_error"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="addResultForm" class="btn btn-primary btn-sm toDisable w-25">
+                    <div class="spinner-border spinner-border-sm toHide" hidden role="status"></div>
+                    Add
+                </button>
+                <button type="button" class="btn btn-primary btn-sm toDisable w-25" data-bs-dismiss="modal" id="addResultModalCloseBtn">Close</button>
             </div>
         </div>
     </div>
