@@ -200,8 +200,8 @@ class ResultAPITest(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_post_request_to_result_endpoint_with_duplicate_subject_choice(self):
-        """returns 400"""
+    def test_post_request_with_duplicate_subject_choice(self):
+        """test post request to result endpoint, returns 400"""
         res = self.client.post(
             reverse(
                 "student-results-list",
