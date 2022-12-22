@@ -25,7 +25,10 @@ class ResultSerializer(serializers.ModelSerializer):
                 code="invalid"
             )
 
-        if Result.objects.filter(student_id=student_id, subject=subject).exists():
+        if Result.objects.filter(
+            student_id=student_id,
+            subject=subject
+        ).exists():
             raise serializers.ValidationError(
                 "This subject already exists in the database.",
                 code="duplicate"
@@ -72,7 +75,10 @@ class UpdateResultSerializer(serializers.ModelSerializer):
                 code="invalid"
             )
 
-        if instance.subject != subject and Result.objects.filter(student_id=student_id, subject=subject).exists():
+        if instance.subject != subject and Result.objects.filter(
+            student_id=student_id,
+            subject=subject
+        ).exists():
             raise serializers.ValidationError(
                 "This subject already exists in the database.",
                 code="duplicate"
