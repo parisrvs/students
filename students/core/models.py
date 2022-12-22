@@ -71,8 +71,6 @@ class Result(models.Model):
     marks_obtained = models.IntegerField()
     remark = models.TextField(max_length=1024)
 
-    def __str__(self):
-        return self.student.name
-
     class Meta:
         unique_together = [["student", "subject"]]
+        ordering = ["student"]
