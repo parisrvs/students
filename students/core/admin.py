@@ -84,7 +84,10 @@ class StudentAdmin(admin.ModelAdmin):
 
     @admin.display(ordering="average_marks")
     def average_marks(self, student):
-        return round(student.average_marks, 2)
+        if student.average_marks:
+            return round(student.average_marks, 2)
+        else:
+            return 0
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related(
