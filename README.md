@@ -11,3 +11,5 @@
 > visit `http://0.0.0.0:8000/api/` or `http://0.0.0.0:8000/admin/` to see full features of the backend app.
 
 #### Not configured for production.
+
+check [screencast](https://youtu.be/6_6Hh_6WRC0)
